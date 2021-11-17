@@ -11,4 +11,9 @@ public interface ChatRepository extends ReactiveMongoRepository<Chat,String> {
     @Query("{ sender : ?0, receiver: ?1 }") // 몽고db문법
     Flux<Chat> mFindBySender(String sender, String receiver);//Flux(흐름) response를 유지하면서 데이터를 계속 흘려보내기
 
+
+    @Tailable
+    @Query("{roomNum : ?0 }")
+    Flux<Chat>mFindRoomNum(Integer roomNum);
 }
+
